@@ -1,3 +1,4 @@
+require 'flog'
 require 'flog_and_churn/data_point'
 
 module FlogAndChurn
