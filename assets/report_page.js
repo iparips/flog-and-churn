@@ -7,8 +7,8 @@ function onPageLoad(metrics) {
 
   var options = {
     title: 'Flog & Churn',
-    hAxis: {title: 'Flog', minValue: 0, maxValue: 10},
-    vAxis: {title: 'Churn', minValue: 0, maxValue: 10},
+    hAxis: {title: 'Churn', minValue: 0, maxValue: 10},
+    vAxis: {title: 'Flog', minValue: 0, maxValue: 10},
     legend: 'none'
   };
 
