@@ -28,7 +28,7 @@ Add the following to your rakefile
 
 ```ruby
 task :flog_and_churn do
-    FlogAndChurnRunner.run
+    FlogAndChurnRunner.new(output_dir: 'reports').run
 end
 ```
 

@@ -6,32 +6,32 @@ require 'flog_and_churn/scores_builder'
 
 class FlogAndChurnRunner
 
-  class << self
+  def initialize(args)
+    @output_dir = args.fetch(:output_dir)
+  end
 
-    def run
-      flog = FlogAndChurn::Flogger.new.score_files
-      churn = FlogAndChurn::Churner.new.score_files
-      scores = FlogAndChurn::ScoresBuilder.combine(flog, churn)
+  def run
+    flog = FlogAndChurn::Flogger.new.score_files
+    churn = FlogAndChurn::Churner.new.score_files
+    scores = FlogAndChurn::ScoresBuilder.combine(flog, churn)
 
-      puts scores.top_ten
+    puts scores.top_ten
 
-      FileUtils.rm_rf 'reports'
-      FileUtils.mkdir 'reports'
+    FileUtils.rm_rf @output_dir
+    FileUtils.mkdir @output_dir
 
-      copy_assets
-      write_scores(scores)
-    end
+    copy_assets
+    write_scores(scores)
+  end
 
-    private
+  private
 
-    def copy_assets
-      FileUtils.cp_r Dir["#{File.dirname(__FILE__)}/../assets/*"], 'reports/'
-    end
+  def copy_assets
+    FileUtils.cp_r Dir["#{File.dirname(__FILE__)}/../assets/*"], "#{@output_dir}/"
+  end
 
-    def write_scores(scores)
-      File.write('reports/data.js', "onPageLoad(#{scores.top_ten.to_json});")
-    end
-
+  def write_scores(scores)
+    File.write("#{@output_dir}/data.js", "onPageLoad(#{scores.top_ten.to_json});")
   end
 
 end
