@@ -8,11 +8,13 @@ class FlogAndChurnRunner
 
   def initialize(args)
     @output_dir = args.fetch(:output_dir)
+    @flog_options = args.fetch(:flog_options, {})
+    @churn_options = args.fetch(:churn_options, {})
   end
 
   def run
-    flog = FlogAndChurn::Flogger.new.score_files
-    churn = FlogAndChurn::Churner.new.score_files
+    flog = FlogAndChurn::Flogger.new(@flog_options).score_files
+    churn = FlogAndChurn::Churner.new(@churn_options).score_files
     scores = FlogAndChurn::ScoresBuilder.combine(flog, churn)
 
     puts scores.top_ten

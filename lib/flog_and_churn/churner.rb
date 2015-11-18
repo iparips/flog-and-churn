@@ -5,11 +5,11 @@ module FlogAndChurn
 
   class Churner
 
-    def initialize
+    def initialize(chrun_options)
       options = {
         minimum_churn_count: 0,
         ignores: '^tmp/|^db/'
-      }
+      }.merge(chrun_options)
       @churn_calc = Churn::ChurnCalculator.new(options)
     end
 

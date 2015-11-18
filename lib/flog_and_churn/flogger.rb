@@ -5,8 +5,8 @@ module FlogAndChurn
 
   class Flogger
 
-    def initialize
-      @flogger = Flog.new(:continue => true)
+    def initialize(flog_options = {})
+      @flogger = Flog.new({continue: true}.merge(flog_options))
     end
 
     def score_files
