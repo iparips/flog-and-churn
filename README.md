@@ -1,6 +1,6 @@
 # FlogAndChurn
 
-TODO: Write a gem description
+This gem combines complexity metrics (flog), and frequency of change metrics (churn) in one visualisation.
 
 ## Installation
 
@@ -12,15 +12,38 @@ gem 'flog_and_churn'
 
 And then execute:
 
-    $ bundle
+```sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install flog_and_churn
+```sh
+$ gem install flog_and_churn
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Add the following to your rakefile
+
+```ruby
+task :flog_and_churn do
+    FlogAndChurnRunner.run
+end
+```
+
+And you are ready to generate the report using
+
+```sh
+$ bundle exec rake flog_and_churn
+```
+
+Finally, open the report (on a mac) with
+
+```sh
+open reports/index.html
+```
+
 
 ## Contributing
 
